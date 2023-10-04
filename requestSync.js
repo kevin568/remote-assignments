@@ -16,6 +16,10 @@ function requestSync(url) {
   }
 }
 
+const start = Date.now();
+
 requestSync(url);
 requestSync(url);
 requestSync(url);
+const end = Date.now();
+console.log("Total Execution time: " + (end - start) + "ms");
