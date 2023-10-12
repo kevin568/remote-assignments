@@ -1,19 +1,22 @@
 const express = require("express");
 const mysql = require("mysql2");
 const { body, validationResult } = require("express-validator");
+const cors = require("cors");
+require("dotenv").config();
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 app.get("/healthcheck", (req, res) => {
   res.send("OK");
 });
 
 const db = mysql.createConnection({
-  host: "appwork-hw1-db.cakf0xkpyic8.ap-southeast-2.rds.amazonaws.com",
-  user: "admin",
-  password: "12345678",
-  database: "assignment",
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PW,
+  database: process.env.DB_NAME,
 });
 
 db.connect((err) => {
@@ -44,6 +47,7 @@ app.post(
     const query = "INSERT INTO user (name, email, password) VALUES (?, ?, ?)";
     db.query(query, [name, email, password], (err, result) => {
       if (err) {
+        console.error(err);
         if (err.code === "ER_DUP_ENTRY") {
           return res.status(409).json({ error: "Email already exists" });
         }
@@ -74,6 +78,7 @@ app.get("/users", (req, res) => {
   const query = "SELECT id, name, email FROM user WHERE id = ?";
   db.query(query, [userId], (err, results) => {
     if (err) {
+      console.error(err);
       return res.status(500).json({ error: "Internal Server Error" });
     }
 

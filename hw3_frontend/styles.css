@@ -1,0 +1,58 @@
+/* Reset some default styling */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: white;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.signup-container {
+  max-width: 500px;
+  width: 100%;
+  /* padding: 20px; */
+  /* border: 1px solid #ccc;
+  border-radius: 5px; */
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+}
+
+h2 {
+  color: black;
+  margin-bottom: 20px;
+}
+
+label {
+  color: black;
+  display: block;
+  margin-bottom: 5px;
+}
+
+input {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin-bottom: 20px; /* space between inputs */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: blue;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: darkblue;
+}
